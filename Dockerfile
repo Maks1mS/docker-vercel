@@ -1,2 +1,4 @@
-FROM node:20-alpine
-RUN npm i -g vercel@latest
+ARG BASE_IMAGE=20-alpine
+FROM node:${BASE_IMAGE}
+ARG VERCEL_VERSION=latest
+RUN npm i -g vercel@${VERCEL_VERSION}
