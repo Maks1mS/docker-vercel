@@ -3,7 +3,7 @@ name: ci
 on:
   workflow_dispatch:
     inputs:
-      base-image:
+      base_image:
         description: 'Base Node image'
         required: true
         default: '20-alpine'
@@ -36,5 +36,8 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            VERCEL_VERSION=${{ github.event.inputs.version }}
+            BASE_IMAGE=${{ github.event.inputs.base_image }}
           push: true
           tags: ${{ vars.DOCKER_IMAGE_NAME }}:latest
